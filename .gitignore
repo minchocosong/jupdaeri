@@ -1,0 +1,21 @@
+.idea
+
+# dependencies
+jupdaeri-client/node_modules
+
+# testing
+/coverage
+
+# production
+jupdaeri-client/build
+
+# misc
+jupdaeri-client/.DS_Store
+jupdaeri-client/.env.local
+jupdaeri-client/.env.development.local
+jupdaeri-client/.env.test.local
+jupdaeri-client/.env.production.local
+
+jupdaeri-client/npm-debug.log*
+jupdaeri-client/yarn-debug.log*
+jupdaeri-client/yarn-error.log*
