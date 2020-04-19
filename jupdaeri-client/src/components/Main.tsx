@@ -30,12 +30,11 @@ const rows = [
 ];
 
 export default function Main() {
-  const classes = useStyles();
   const [webSocket, setWebSocket] = useState();
   const [realtimelog, setRealtimelog] = useState();
 
   useEffect(() => {
-    const webSocket = new WebSocket('ws://localhost:9998');
+    const webSocket = new WebSocket('ws://172.30.1.41:9998');
     webSocket.onopen = () => {
       webSocket.send('javascript send to data here~');
     };
@@ -43,8 +42,8 @@ export default function Main() {
       setRealtimelog(message.data);
     };
     webSocket.onmessage = (message: any) => {
-        setRealtimelog(message.data);
-      };
+      setRealtimelog(message.data);
+    };
     setWebSocket(webSocket);
   }, []);
 
