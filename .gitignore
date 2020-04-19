@@ -1,4 +1,10 @@
 .idea
+venv
+jupdaeri-server/env
+jupdaeri-server/jupdaeri/__pycache__
+jupdaeri-server/jupdaeri/restapi/__pycache__
+jupdaeri-server/jupdaeri/restapi/daeshin_module/__pycache__
+jupdaeri-server/jupdaeri/restapi/migrations/__pycache__
 
 # dependencies
 jupdaeri-client/node_modules
