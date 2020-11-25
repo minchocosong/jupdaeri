@@ -7,8 +7,25 @@ import {
   CardActions,
   Button,
 } from '@material-ui/core';
+import { makeStyles } from '@material-ui/core/styles';
+
+const useStyles = makeStyles({
+  paper: {
+    height: '100%',
+  },
+  card: {
+    height: '92%',
+  },
+  cardContent: {
+    height: '315px',
+    overflow: 'auto',
+    whiteSpace: 'pre-line',
+  },
+});
 
 export default function RealtimeLog({ log }: any) {
+  const classes = useStyles();
+
   const [logs, setLogs] = useState('');
   const messagesEndRef = useRef<HTMLDivElement>(null);
 
@@ -24,14 +41,12 @@ export default function RealtimeLog({ log }: any) {
   }, [log]);
 
   return (
-    <Paper>
+    <Paper className={classes.paper}>
       <Typography variant="h6" gutterBottom>
         실시간 로그
       </Typography>
-      <Card variant="outlined">
-        <CardContent
-          style={{ height: '100px', overflow: 'auto', whiteSpace: 'pre-line' }}
-        >
+      <Card variant="outlined" className={classes.card}>
+        <CardContent className={classes.cardContent}>
           {logs}
           <div ref={messagesEndRef} />
         </CardContent>
