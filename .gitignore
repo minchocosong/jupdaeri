@@ -6,6 +6,9 @@ jupdaeri-server/jupdaeri/restapi/__pycache__
 jupdaeri-server/jupdaeri/restapi/daeshin_module/__pycache__
 jupdaeri-server/jupdaeri/restapi/migrations/__pycache__
 
+jupdaeri-upbit/bin
+jupdaeri-upbit/lib
+
 # dependencies
 jupdaeri-client/node_modules
 
