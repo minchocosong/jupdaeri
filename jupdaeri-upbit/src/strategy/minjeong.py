@@ -14,6 +14,7 @@ class Minjeong:
 
 
     # Up trend (상승 추세선) 최소 두 개 이상의 저점 꼬리로 그린다
+
     # down trend (하락 추세선) 최소 두 개 이상의 고점
 
 

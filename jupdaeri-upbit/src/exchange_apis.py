@@ -8,14 +8,17 @@ def get_balance():
     """
     잔고 조회
     """
-    balance = []
+    balance = None
     res = upbit_request("get", "/v1/accounts", {})
     if res.status_code == 200:
         balance = res.json()
+        msg = f'[자산 조회 성공]'
+        logger.log(level=4, msg=msg)
     else:
-        logger.log(level=4, msg='자산 조회 실패')
+        msg = f'[자산 조회 실패]'
+        logger.error(msg=msg)
 
-    return balance
+    return balance, msg
 
 
 def buy_limit_order(market, price, volume):
@@ -30,14 +33,17 @@ def buy_limit_order(market, price, volume):
         'ord_type': 'limit',
     }
 
-    result = {}
+    result = None
     res = upbit_request("post", "/v1/orders", query)
     if res.status_code == 201:
         result = res.json()
+        msg = f'[지정가 매수 주문 성공] 마켓코드: {market}, price: {price}, volume: {volume}'
+        logger.log(level=4, msg=msg)
     else:
-        logger.log(level=4, msg='지정가 매수 실패')
+        msg = f'[지정가 매수 주문 실패] 마켓코드: {market}, price: {price}, volume: {volume}'
+        logger.error(msg=msg)
 
-    return result
+    return result, msg
 
 
 def buy_market_order(market, price):
@@ -52,14 +58,17 @@ def buy_market_order(market, price):
         'ord_type': 'price',
     }
 
-    result = {}
+    result = None
     res = upbit_request("post", "/v1/orders", query)
     if res.status_code == 201:
         result = res.json()
+        msg = f'[시장가 매수 주문 성공] 마켓코드: {market}, price: {price}'
+        logger.log(level=4, msg=msg)
     else:
-        logger.log(level=4, msg='시장가 매수 실패')
+        msg = f'[시장가 매수 주문 실패] 마켓코드: {market}, price: {price}'
+        logger.error(msg=msg)
 
-    return result
+    return result, msg
 
 
 def sell_limit_order(market, price, volume):
@@ -74,15 +83,17 @@ def sell_limit_order(market, price, volume):
         'ord_type': 'limit',
     }
 
-    result = {}
+    result = None
     res = upbit_request("post", "/v1/orders", query)
     if res.status_code == 201:
         result = res.json()
+        msg = f'[지정가 매도 주문 성공] 마켓코드: {market}, price: {price}, volume: {volume}'
+        logger.log(level=4, msg=msg)
     else:
-        logger.log(level=4, msg='지정가 매도 실패')
+        msg = f'[지정가 매도 주문 실패] 마켓코드: {market}, price: {price}, volume: {volume}'
+        logger.error(msg=msg)
 
-    return result
-
+    return result, msg
 
 
 def sell_market_order(market, volume):
@@ -96,11 +107,35 @@ def sell_market_order(market, volume):
         'ord_type': 'market',
     }
 
-    result = {}
+    result = None
     res = upbit_request("post", "/v1/orders", query)
     if res.status_code == 201:
         result = res.json()
+        msg = f'[시장가 매도 주문 성공] 마켓코드: {market}, price: {price}, volume: {volume}'
+        logger.log(level=4, msg=msg)
     else:
-        logger.log(level=4, msg='시장가 매도 실패')
+        msg = f'[시장가 매도 주문 실패] 마켓코드: {market}, price: {price}, volume: {volume}'
+        logger.error(msg=msg)
 
-    return result
+    return result, msg
+
+
+def get_order_state(uuid):
+    """
+    개별 주문 조회
+    """
+    query = {
+        'uuid': uuid,
+    }
+
+    result = None
+    res = upbit_request("get", "/v1/order", query)
+    if res.status_code == 200:
+        result = res.json()
+        msg = f'[개별 주문 조회 성공] uuid: {uuid}'
+        logger.log(level=4, msg=msg)
+    else:
+        msg = f'[개별 주문 조회 실패] uuid: {uuid}'
+        logger.error(msg=msg)
+
+    return result, msg

@@ -1,4 +1,5 @@
 .idea
+*.pyc
 venv
 jupdaeri-server/env
 jupdaeri-server/jupdaeri/__pycache__
